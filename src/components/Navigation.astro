@@ -1,0 +1,84 @@
+---
+const siteName = "CelebScandal Digest";
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Latest Rumors", href: "/latest-rumors" },
+  { name: "Celebrity Profiles", href: "/celebrity-profiles" },
+  { name: "Scandal Reports", href: "/scandal-reports" },
+  { name: "Exclusive Insiders", href: "/exclusive-insiders" }
+];
+---
+
+<nav class="bg-[#8B0000] text-white shadow-2xl">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <a href="/" class="text-3xl font-bold tracking-wider hover:text-[#800020] transition-colors duration-300">
+        {siteName}
+      </a>
+      
+      {/* Desktop Navigation */}
+      <div class="hidden md:flex gap-1">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href}
+            class="px-4 py-2 font-bold text-lg hover:bg-[#800020] transition-all duration-300 transform hover:scale-105"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+      
+      {/* Mobile Menu Button */}
+      <button class="md:hidden text-white focus:outline-none" id="mobile-menu-button">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </div>
+  
+  {/* Mobile Navigation */}
+  <div class="md:hidden bg-[#800020] hidden" id="mobile-menu">
+    <div class="flex flex-col py-2">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class="px-4 py-3 font-bold text-lg hover:bg-[#8B0000] transition-colors duration-300 border-b border-[#8B0000]"
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+<style>
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+  
+  nav {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  a:hover {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .text-3xl {
+      font-size: 1.75rem;
+    }
+  }
+</style>
